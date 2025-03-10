@@ -1,6 +1,6 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http'; // ✅ Ajout du HttpClient
+import { provideHttpClient, withFetch } from '@angular/common/http'; // ✅ Ajout de withFetch()
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -9,6 +9,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient() // ✅ Ajout ici
+    provideHttpClient(withFetch()) // ✅ Ajout ici pour activer `fetch`
   ]
 };
