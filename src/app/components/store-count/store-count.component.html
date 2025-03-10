@@ -1,6 +1,11 @@
-<div class="store-card">
-    <h3>Nombre de magasins</h3>
-    <p *ngIf="totalMagasins !== null">{{ totalMagasins }}</p>
-    <p *ngIf="totalMagasins === null">Chargement...</p>
+<div class="store-count-container">
+    <div class="store-count-card">
+      <h3>Nombre de Magasins</h3>
+      <p>{{ totalMagasins ?? 'Chargement...' }}</p>
+    </div>
+    <div class="store-count-card">
+      <h3>Nombre de Fabricants</h3>
+      <p>{{ totalFabricants ?? 'Chargement...' }}</p>
+    </div>
   </div>
   

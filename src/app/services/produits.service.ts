@@ -21,11 +21,10 @@ export class ProduitsService {
   }
 
 
-
-  getTotalMfabByCatID(catID: number): Observable<any> {
-    const url = `http://127.0.0.1:8000/api/produits/?type=fab-cat&catID=${catID}`;
-    return this.http.get<any>(url);
+  getTotalFabricantsByCatID(catID: number): Observable<any> {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/produits/?type=fab-cat&catID=${catID}`);
   }
+  
   
 
 }
