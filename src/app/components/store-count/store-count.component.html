@@ -7,5 +7,10 @@
       <h3>Nombre de Fabricants</h3>
       <p>{{ totalFabricants ?? 'Chargement...' }}</p>
     </div>
+    <div class="store-count-card">
+      <h3>Moyenne Produits/Fabricant</h3>
+      <p *ngIf="avgProductsPerFab !== null">{{ avgProductsPerFab | number:'1.2-2' }}</p>
+      <p *ngIf="avgProductsPerFab === null">Sélectionner une période</p>
+    </div>
   </div>
   

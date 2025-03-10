@@ -25,6 +25,8 @@ export class ProduitsService {
     return this.http.get<any>(`http://127.0.0.1:8000/api/produits/?type=fab-cat&catID=${catID}`);
   }
   
-  
+  getAvgProductsPerFab(catID: number, debut: string, fin: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}?type=avg-prod-per-fab&catID=${catID}&debut=${debut}&fin=${fin}`);
+  }
 
 }
