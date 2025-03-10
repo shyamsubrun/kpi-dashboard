@@ -1,0 +1,14 @@
+<div class="filters">
+    <label for="catID">Catégorie :</label>
+    <select id="catID" (change)="onCatIDChange($event)">
+      <option *ngFor="let id of categories" [value]="id">{{ id }}</option>
+    </select>
+  
+    <label for="fabID">Fabricant :</label>
+    <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="onFabIDChange()">
+  </div>
+  
+  <!-- ✅ Ajout du KPI Magasins -->
+  <app-store-count [catID]="catID"></app-store-count>
+  
+  

@@ -1,8 +1,2 @@
-<div *ngIf="isBrowser" style="display: block; width: 100%">
-  <canvas baseChart
-    [data]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [type]="barChartType">
-  </canvas>
-</div>
+<app-filters (filterChange)="updateFilters($event)"></app-filters>
+<app-graph [catID]="catID" [fabID]="fabID"></app-graph>

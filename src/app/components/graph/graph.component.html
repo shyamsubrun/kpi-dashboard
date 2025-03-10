@@ -1,0 +1,16 @@
+<!-- ✅ Carte pour afficher l'average -->
+<div class="info-card">
+    <h3>Moyenne des pourcentages</h3>
+    <p>{{ average | number:'1.2-2' }}%</p>
+  </div>
+  
+  <!-- ✅ Graphique -->
+  <div *ngIf="isBrowser" style="display: block; width: 100%">
+    <canvas baseChart
+      [data]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [type]="barChartType">
+    </canvas>
+  </div>
+  
