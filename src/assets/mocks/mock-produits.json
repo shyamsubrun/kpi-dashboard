@@ -1,0 +1,13 @@
+[
+    { "magID": 55, "total_fabricants": 189, "total_produits": 243, "total_ventes": 442, "score": 357.0 },
+    { "magID": 65, "total_fabricants": 184, "total_produits": 238, "total_ventes": 413, "score": 337.6 },
+    { "magID": 58, "total_fabricants": 195, "total_produits": 241, "total_ventes": 405, "score": 334.8 },
+    { "magID": 51, "total_fabricants": 184, "total_produits": 235, "total_ventes": 405, "score": 331.9 },
+    { "magID": 75, "total_fabricants": 190, "total_produits": 240, "total_ventes": 394, "score": 327.4 },
+    { "magID": 74, "total_fabricants": 186, "total_produits": 237, "total_ventes": 394, "score": 326.1 },
+    { "magID": 26, "total_fabricants": 191, "total_produits": 243, "total_ventes": 390, "score": 326.0 },
+    { "magID": 72, "total_fabricants": 188, "total_produits": 237, "total_ventes": 393, "score": 325.7 },
+    { "magID": 59, "total_fabricants": 185, "total_produits": 242, "total_ventes": 391, "score": 325.7 },
+    { "magID": 68, "total_fabricants": 189, "total_produits": 241, "total_ventes": 390, "score": 325.2 }
+  ]
+  

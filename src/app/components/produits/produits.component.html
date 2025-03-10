@@ -1,0 +1,26 @@
+<div class="top-10-container">
+    <h2>🏆 Top 10 Magasins (Basé sur le Score) 🏆</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>🏅 Rang</th>
+          <th>🏬 Magasin ID</th>
+          <th>🛠️ Fabricants</th>
+          <th>📦 Produits</th>
+          <th>📊 Ventes</th>
+          <th>⭐ Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let magasin of topMagasins; let i = index">
+          <td class="rank">{{ i + 1 }}</td>
+          <td>{{ magasin.magID }}</td>
+          <td>{{ magasin.total_fabricants }}</td>
+          <td>{{ magasin.total_produits }}</td>
+          <td>{{ magasin.total_ventes }}</td>
+          <td class="score">{{ magasin.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
