@@ -1,22 +1,33 @@
-<div class="filters">
-    <label for="catID">Catégorie :</label>
-    <select id="catID" (change)="onCatIDChange($event)">
-      <option *ngFor="let id of categories" [value]="id">{{ id }}</option>
-    </select>
-  
-    <label for="fabID">Fabricant :</label>
-    <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="onFabIDChange()">
+<div class="filters-container">
+  <div class="filters">
+    <!-- Sélecteur de catégorie -->
+    <div>
+      <label for="catID">Catégorie :</label>
+      <select id="catID" (change)="onCatIDChange($event)">
+        <option *ngFor="let id of categories" [value]="id">{{ id }}</option>
+      </select>
+    </div>
 
+    <!-- Input fabricant -->
+    <div>
+      <label for="fabID">Fabricant :</label>
+      <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="onFabIDChange()">
+    </div>
 
-    <label for="dateDebut">Date début :</label>
-    <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()" 
-           [min]="minDate" [max]="maxDate">
-  
-    <label for="dateFin">Date fin :</label>
-    <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()" 
-           [min]="minDate" [max]="maxDate">
-           
+    <!-- Sélection de dates -->
+    <div>
+      <label for="dateDebut">Date début :</label>
+      <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()" 
+             [min]="minDate" [max]="maxDate">
+    </div>
+
+    <div>
+      <label for="dateFin">Date fin :</label>
+      <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()" 
+             [min]="minDate" [max]="maxDate">
+    </div>
   </div>
-  
+</div>
+
   <!-- ✅ Affichage du nombre de magasins et de fabricants -->
  <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
