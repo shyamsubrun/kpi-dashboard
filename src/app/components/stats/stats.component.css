@@ -1,0 +1,12 @@
+.chart-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #4a90e2;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  

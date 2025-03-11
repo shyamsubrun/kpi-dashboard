@@ -12,10 +12,12 @@ import { StoreCountComponent } from '../store-count/store-count.component'; // �
 })
 export class FiltersComponent {
   categories = Array.from({ length: 10 }, (_, i) => i); // Catégories 0 à 9
-  catID = 5;
+  catID !: number;
   fabID!: number;
   date_debut: string = this.toInputDate(new Date()); 
   date_fin: string = this.toInputDate(new Date()); 
+  minDate: string = this.toInputDate(new Date(2022, 0, 1)); // 1er janvier 2022
+  maxDate: string = this.toInputDate(new Date()); // Aujourd’hui
 
 
   @Output() filterChange = new EventEmitter < {

@@ -6,12 +6,17 @@
   
     <label for="fabID">Fabricant :</label>
     <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="onFabIDChange()">
-    <label for="dateDebut">Date début :</label>
-  <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()">
 
-  <label for="dateFin">Date fin :</label>
-  <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()">
+
+    <label for="dateDebut">Date début :</label>
+    <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()" 
+           [min]="minDate" [max]="maxDate">
+  
+    <label for="dateFin">Date fin :</label>
+    <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()" 
+           [min]="minDate" [max]="maxDate">
+           
   </div>
   
   <!-- ✅ Affichage du nombre de magasins et de fabricants -->
-s  <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
+ <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>

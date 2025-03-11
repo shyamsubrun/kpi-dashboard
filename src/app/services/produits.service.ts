@@ -29,4 +29,10 @@ export class ProduitsService {
     return this.http.get<any>(`${this.baseUrl}?type=avg-prod-per-fab&catID=${catID}&debut=${debut}&fin=${fin}`);
   }
 
+  getTopMagasinsByCatID(catID: number): Observable<any[]> {
+    const url = `http://127.0.0.1:8000/api/produits/?type=top-magasins-cat&catID=${catID}`;
+    return this.http.get<any[]>(url);
+  }
+  
+
 }

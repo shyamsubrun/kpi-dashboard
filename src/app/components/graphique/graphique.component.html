@@ -1,0 +1,9 @@
+<h2>📊 Statistiques</h2>
+<div *ngIf="isBrowser" style="display: block; width: 100%">
+  <canvas baseChart
+    [data]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [type]="barChartType">
+  </canvas>
+</div>
