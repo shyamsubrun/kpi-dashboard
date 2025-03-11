@@ -1,8 +1,2 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-produits></app-produits>
-<ng-container *ngIf="isBrowser">
-    <app-stats></app-stats>
-  </ng-container>
-  
-  
+<app-header></app-header> 
+<router-outlet></router-outlet>  <!-- ✅ C'est ici que les composants changent selon la route -->

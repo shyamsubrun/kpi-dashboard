@@ -1,8 +1,14 @@
-<div *ngIf="isBrowser" style="display: block; width: 100%">
+<div *ngIf="isBrowser">
+  <div *ngIf="barChartData; else loadingTemplate">
     <canvas baseChart
       [data]="barChartData"
       [labels]="barChartLabels"
-      [type]="barChartType">
+      [type]="barChartType"
+      [options]="{ responsive: true }">
     </canvas>
   </div>
-  
+
+  <ng-template #loadingTemplate>
+    <p>Chargement des données...</p>
+  </ng-template>
+</div>

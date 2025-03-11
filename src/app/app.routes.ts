@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { StatsComponent } from './components/stats/stats.component';
+import { ProduitsComponent } from './components/produits/produits.component';
 
 export const routes: Routes = [
-  { path: 'stats', component: StatsComponent }, // ✅ Route vers le composant Stats
-  { path: '', redirectTo: 'stats', pathMatch: 'full' } // ✅ Redirige vers /stats par défaut
+  { path: '', component: ProduitsComponent },  // ✅ Page d'accueil
+  { path: 'stats', component: StatsComponent } // ✅ Page Stats
 ];
