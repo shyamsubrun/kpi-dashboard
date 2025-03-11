@@ -36,7 +36,7 @@ export class StatsComponent implements OnInit {
     this.produitsService.getTopMagasinsByCatID(4).subscribe((data: any[]) => {
       console.log('📊 Data received:', data); // ✅ Vérifie si l'API répond
 
-      this.barChartLabels = data.map(mag => `Mag ${mag.magID}`);
+      this.barChartLabels = data.map(mag => `Mag ${mag.magid}`);
       this.barChartData = {
         labels: this.barChartLabels,
         datasets: [
