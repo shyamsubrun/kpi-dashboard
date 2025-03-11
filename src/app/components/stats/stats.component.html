@@ -1,10 +1,20 @@
+<h2>📊 Statistiques</h2>
+
+<!-- ✅ Sélecteur de catégorie -->
+<label for="categorySelect">Sélectionner une catégorie :</label>
+<select id="categorySelect" (change)="onCategoryChange($event)">
+  <option value="all">Toutes les catégories</option>
+  <option *ngFor="let id of categories" [value]="id">Catégorie {{ id }}</option>
+</select>
+
+<!-- ✅ Graphique -->
 <div *ngIf="isBrowser">
   <div *ngIf="barChartData; else loadingTemplate">
     <canvas baseChart
       [data]="barChartData"
       [labels]="barChartLabels"
       [type]="barChartType"
-      [options]="{ responsive: true }">
+      [options]="barChartOptions">
     </canvas>
   </div>
 

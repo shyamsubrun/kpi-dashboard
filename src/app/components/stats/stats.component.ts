@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { ChartType } from 'chart.js';
+import { ChartType, ChartConfiguration } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { ProduitsService } from '../../services/produits.service';
 import { HeaderComponent } from '../header/header.component';
@@ -15,8 +15,22 @@ import { HeaderComponent } from '../header/header.component';
 export class StatsComponent implements OnInit {
   isBrowser: boolean;
   barChartLabels: string[] = [];
-  barChartData: any = null; // ✅ Initialise bien `barChartData`
-  barChartType: ChartType = 'bar'; 
+  barChartData: any = null;
+  barChartType: ChartType = 'bar';
+  barChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    indexAxis: 'y', // 🔄 Barres horizontales
+    scales: {
+      x: {
+        stacked: true // ✅ Permet d'empiler les segments dans chaque barre
+      },
+      y: {
+        stacked: true
+      }
+    }
+  };
+  categories = Array.from({ length: 10 }, (_, i) => i);
+  selectedCategory: number | null = null;
 
   constructor(
     private produitsService: ProduitsService,
@@ -27,24 +41,41 @@ export class StatsComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      console.log('✅ Fetching data for stats page...'); // ✅ Vérification
       this.fetchData();
     }
   }
 
-  fetchData(): void {
-    this.produitsService.getTopMagasinsByCatID(4).subscribe((data: any[]) => {
-      console.log('📊 Data received:', data); // ✅ Vérifie si l'API répond
+  onCategoryChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectedCategory = target.value === "all" ? null : Number(target.value);
+    this.fetchData();
+  }
 
-      this.barChartLabels = data.map(mag => `Mag ${mag.magid}`);
-      this.barChartData = {
-        labels: this.barChartLabels,
-        datasets: [
-          { data: data.map(mag => mag.total_fabricants), label: 'Total Fabricants', backgroundColor: 'rgba(255, 99, 132, 0.5)' },
-          { data: data.map(mag => mag.total_produits), label: 'Total Produits', backgroundColor: 'rgba(54, 162, 235, 0.5)' },
-          { data: data.map(mag => mag.total_ventes), label: 'Total Ventes', backgroundColor: 'rgba(255, 206, 86, 0.5)' }
-        ]
-      };
+  fetchData(): void {
+    this.produitsService.getTopMagasins(this.selectedCategory).subscribe((data: any[]) => {
+      data.sort((a, b) => (b.score || 0) - (a.score || 0)); // 📊 Trier par score décroissant
+      const top10 = data.slice(0, 10); // ✅ Top 10 uniquement
+      this.updateChartData(top10);
     });
+  }
+
+  updateChartData(data: any[]): void {
+    console.log('📊 Data received:', data);
+
+    this.barChartLabels = data.map(mag => mag.magid ? `Mag ${mag.magid}` : 'Mag inconnu');
+
+    // ✅ Calcul des segments
+    const segment1 = data.map(mag => (mag.score || 0) * 0.6);
+    const segment2 = data.map(mag => (mag.score || 0) * 0.3);
+    const segment3 = data.map(mag => (mag.score || 0) * 0.1);
+
+    this.barChartData = {
+      labels: this.barChartLabels,
+      datasets: [
+        { data: segment1, label: 'Vente (60%)', backgroundColor: 'rgba(75, 192, 192, 0.8)' },
+        { data: segment2, label: 'Produit (30%)', backgroundColor: 'rgba(255, 159, 64, 0.8)' },
+        { data: segment3, label: 'Fabricant (10%)', backgroundColor: 'rgba(255, 99, 132, 0.8)' }
+      ]
+    };
   }
 }

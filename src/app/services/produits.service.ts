@@ -30,9 +30,18 @@ export class ProduitsService {
   }
 
   getTopMagasinsByCatID(catID: number): Observable<any[]> {
-    const url = `http://127.0.0.1:8000/api/produits/?type=top-magasins-cat&catID=${catID}`;
-    return this.http.get<any[]>(url);
+    const url = catID === null 
+    ? `http://127.0.0.1:8000/api/produits/?type=top-magasins` 
+    : `http://127.0.0.1:8000/api/produits/?type=top-magasins-cat&catID=${catID}`;
+
+  return this.http.get<any[]>(url);
   }
   
-
+  getTopMagasins(catID: number | null): Observable<any[]> {
+    const url = catID === null 
+      ? `${this.baseUrl}?type=top-magasins` 
+      : `${this.baseUrl}?type=top-magasins-cat&catID=${catID}`;
+    
+    return this.http.get<any[]>(url);
+  }
 }
