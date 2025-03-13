@@ -56,4 +56,7 @@ fetchFabricantsCount(): void {
   });
 }
 
+
+
+
 }

@@ -1,0 +1,25 @@
+<h2>📈 Détail Produit - Graphique 3 Courbes</h2>
+
+<!-- ✅ Sélecteur de catégorie -->
+<label for="categorySelect">Catégorie :</label>
+<select id="categorySelect" [(ngModel)]="selectedCategory">
+  <option [value]="null" disabled selected>Choisir une catégorie</option>
+  <option *ngFor="let cat of categories" [value]="cat">Catégorie {{ cat }}</option>
+</select>
+
+<!-- ✅ Input pour saisir le fabricant -->
+<label for="fabInput">Fabricant :</label>
+<input id="fabInput" type="text" [(ngModel)]="fabricantInput" placeholder="Entrer un ID fabricant">
+
+<!-- ✅ Bouton de recherche -->
+<button (click)="onSearch()">🔍 Rechercher</button>
+
+<!-- ✅ Graphique -->
+<div *ngIf="isBrowser && lineChartData">
+  <canvas baseChart
+    [data]="lineChartData"
+    [labels]="lineChartLabels"
+    [type]="lineChartType"
+    [options]="lineChartOptions">
+  </canvas>
+</div>

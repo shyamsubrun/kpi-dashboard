@@ -4,19 +4,16 @@
       <p>{{ totalMagasins ?? 'Chargement...' }}</p>
     </div>
     <div class="store-count-card">
-      <h3>Nombre de Fabricants</h3>
+      <h3>Nombre de Fabricants (La concurence)</h3>
       <p>{{ totalFabricants ?? 'Chargement...' }}</p>
     </div>
     <div class="store-count-card">
-      <h3>Moyenne Produits/Fabricant</h3>
+      <h3>Moyenne Produits par Fabricant</h3>
       <p *ngIf="avgProductsPerFab !== null">{{ avgProductsPerFab | number:'1.2-2' }}</p>
       <p *ngIf="avgProductsPerFab === null">Sélectionner une période</p>
     </div>
 
-    <div class="store-count-card">
-      <h3>Nombre de Concurrents</h3>
-      <p>{{ totalFabricants ?? 'Chargement...' }}</p>
-    </div>
+
     
   </div>
   

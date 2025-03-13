@@ -28,6 +28,7 @@ export class ProduitsService {
   getAvgProductsPerFab(catID: number, debut: string, fin: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}?type=avg-prod-per-fab&catID=${catID}&debut=${debut}&fin=${fin}`);
   }
+  
 
   getTopMagasinsByCatID(catID: number): Observable<any[]> {
     const url = catID === null 
@@ -44,4 +45,16 @@ export class ProduitsService {
     
     return this.http.get<any[]>(url);
   }
+
+
+  getScoreEvolution(catID: number, fabID: number): Observable<any[]> {
+    const url = `http://127.0.0.1:8000/api/produits/?type=score-evolution&catID=${catID}&fabID=${fabID}`;
+    return this.http.get<any[]>(url);
+  }
+  
+
+  getFabricantsByCatID(catID: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}?type=fab-cat&catID=${catID}`);
+  }
+
 }
