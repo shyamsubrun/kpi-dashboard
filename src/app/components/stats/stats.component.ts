@@ -52,7 +52,7 @@ export class StatsComponent implements OnInit {
   }
 
   fetchData(): void {
-    this.produitsService.getTopMagasins(this.selectedCategory).subscribe((data: any[]) => {
+    this.produitsService.getTopMagasins(this.selectedCategory, ).subscribe((data: any[]) => {
       if (this.selectedCategory == null) {
         this.updateChartData_all(data);
       } 

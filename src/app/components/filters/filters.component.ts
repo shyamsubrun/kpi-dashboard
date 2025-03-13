@@ -39,7 +39,7 @@ export class FiltersComponent {
   }>();
 
   toApiDate(date: string): string {
-    return date.replace(/-/g, ''); // Ex: 2025-03-10 → 20250310
+    return date.replace(/-/g, '-'); // Ex: 2025-03-10 → 20250310
   }
 
   // ✅ Convertir Date en YYYY-MM-DD pour <input>

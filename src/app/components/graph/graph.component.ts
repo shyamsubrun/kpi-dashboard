@@ -14,6 +14,8 @@ import { ProduitsService } from '../../services/produits.service';
 export class GraphComponent implements OnChanges {
   @Input() catID!: number;
   @Input() fabID!: number;
+  @Input() date_debut!: string;
+  @Input() date_fin!: string;
 
   isBrowser: boolean;
   average: number = 0;
@@ -39,11 +41,15 @@ export class GraphComponent implements OnChanges {
   }
 
   fetchData(): void {
-    if (!this.catID || !this.fabID) return;
 
-    this.produitsService.getStatsByCatFab(this.catID, this.fabID).subscribe((data) => {
+    if (!this.catID || !this.fabID ||!this.date_debut||!this.date_fin) return;
+
+    this.produitsService.getStatsByCatFab(this.catID, this.fabID, this.date_debut, this.date_fin).subscribe((data) => {
+      console.log("c'est de graph")
+      console.log(data)
       this.average = data.average;
       const topMagasins = data.top_mag;
+      console.log("test ", data.top_mag)
 
       this.barChartLabels = topMagasins.map((mag: { magID: number }) => `Mag ${mag.magID}`);
       this.barChartData.labels = this.barChartLabels;

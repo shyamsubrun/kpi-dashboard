@@ -13,10 +13,15 @@ import { GraphComponent } from '../graph/graph.component';
 export class ProduitsComponent {
   catID = 5;
   fabID!: number;
+  date_debut!: string;
+  date_fin!: string;
 
-  updateFilters(filters: { catID: number; fabID: number }) {
+  updateFilters(filters: { catID: number; fabID: number ,date_debut: string ,date_fin: string}) {
     this.catID = filters.catID;
     this.fabID = filters.fabID;
+    this.date_debut = filters.date_debut;
+    this.date_fin = filters.date_fin;
+    
   }
 
   
