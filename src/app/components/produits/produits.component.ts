@@ -18,4 +18,6 @@ export class ProduitsComponent {
     this.catID = filters.catID;
     this.fabID = filters.fabID;
   }
+
+  
 }

@@ -46,4 +46,14 @@ export class StoreCountComponent implements OnChanges {
       this.avgProductsPerFab = data[0]?.avg_products_per_fab || 0;
     });
   }
+
+
+fetchFabricantsCount(): void {
+  if (!this.catID) return; // Vérifier que la catégorie est sélectionnée
+
+  this.produitsService.getTotalFabricantsByCatID(this.catID).subscribe(data => {
+    this.totalFabricants = data.total_fabricants || 0;
+  });
+}
+
 }
