@@ -57,4 +57,10 @@ export class ProduitsService {
     return this.http.get<any[]>(`${this.baseUrl}?type=fab-cat&catID=${catID}`);
   }
 
+  getAverageMagasins(catID: number, annee: number): Observable<any[]> {
+    const url = `http://127.0.0.1:8000/api/produits/?type=nb-mag-cat-date&catID=${catID}&annee=${annee}`;
+    return this.http.get<any[]>(url);
+  }
+  
+
 }
