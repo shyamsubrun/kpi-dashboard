@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from '../filters/filters.component';
 import { GraphComponent } from '../graph/graph.component';
+import { StoreCountComponent } from '../store-count/store-count.component'; // ✅ Ajout
 
 @Component({
   selector: 'app-produits',
   standalone: true,
-  imports: [CommonModule, FiltersComponent, GraphComponent],
+  imports: [CommonModule, FiltersComponent, GraphComponent,StoreCountComponent],
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css'],
 })
