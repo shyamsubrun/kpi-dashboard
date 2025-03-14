@@ -40,10 +40,10 @@ export class ProduitsService {
   return this.http.get<any[]>(url);
   }
   
-  getTopMagasins(catID: number | null): Observable<any[]> {
+  getTopMagasins(catID: number | null, debut: string, fin: string ): Observable<any[]> {
     const url = catID === null 
-      ? `${this.baseUrl}?type=top-magasins` 
-      : `${this.baseUrl}?type=top-magasins-cat&catID=${catID}`;
+      ? `${this.baseUrl}?type=top-magasins&debut=${debut}&fin=${fin}` 
+      : `${this.baseUrl}?type=top-magasins-cat&catID=${catID}&debut=${debut}&fin=${fin}`;
     
     return this.http.get<any[]>(url);
   }

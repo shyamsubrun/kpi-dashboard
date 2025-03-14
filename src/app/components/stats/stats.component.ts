@@ -42,6 +42,7 @@ export class StatsComponent implements OnInit {
     this.fabID = filters.fabID;
     this.date_debut = filters.date_debut;
     this.date_fin = filters.date_fin;
+    this.fetchData();
     
   }
   constructor(
@@ -64,7 +65,7 @@ export class StatsComponent implements OnInit {
   }
 
   fetchData(): void {
-    this.produitsService.getTopMagasins(this.selectedCategory, ).subscribe((data: any[]) => {
+    this.produitsService.getTopMagasins(this.catID,this.date_debut, this.date_fin).subscribe((data: any[]) => {
       if (this.selectedCategory == null) {
         this.updateChartData_all(data);
       } 
