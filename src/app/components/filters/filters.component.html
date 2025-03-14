@@ -1,6 +1,5 @@
 <div class="filters-container">
   <div class="filters">
-    <!-- Sélecteur de catégorie -->
     <div>
       <label for="catID">Catégorie :</label>
       <select id="catID" (change)="onCatIDChange($event)">
@@ -8,13 +7,11 @@
       </select>
     </div>
 
-    <!-- Input fabricant -->
     <div>
       <label for="fabID">Fabricant :</label>
       <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="onFabIDChange()">
     </div>
 
-    <!-- Sélecteur de période (saison) -->
     <div>
       <label for="periode">Période :</label>
       <select id="periode" (change)="onPeriodeChange($event)">
@@ -23,21 +20,14 @@
       </select>
     </div>
 
-    <!-- Sélection de dates -->
     <div>
       <label for="dateDebut">Date début :</label>
-      <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()" 
-             [min]="minDate" [max]="maxDate">
+      <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()" [min]="minDate" [max]="maxDate">
     </div>
 
     <div>
       <label for="dateFin">Date fin :</label>
-      <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()" 
-             [min]="minDate" [max]="maxDate">
+      <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()" [min]="minDate" [max]="maxDate">
     </div>
   </div>
 </div>
-
-
-  <!-- ✅ Affichage du nombre de magasins et de fabricants -->
- <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>

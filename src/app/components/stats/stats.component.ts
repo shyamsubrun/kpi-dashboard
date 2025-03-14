@@ -4,11 +4,12 @@ import { ChartType, ChartConfiguration } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { ProduitsService } from '../../services/produits.service';
 import { HeaderComponent } from '../header/header.component';
+import { FiltersComponent } from '../filters/filters.component';
 
 @Component({
   selector: 'app-stats',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, HeaderComponent],
+  imports: [CommonModule, NgChartsModule, HeaderComponent,FiltersComponent],
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
@@ -31,7 +32,18 @@ export class StatsComponent implements OnInit {
   };
   categories = Array.from({ length: 10 }, (_, i) => i);
   selectedCategory: number | null = null;
+  catID = 5;
+  fabID!: number;
+  date_debut!: string;
+  date_fin!: string;
 
+  updateFilters(filters: { catID: number; fabID: number ,date_debut: string ,date_fin: string}) {
+    this.catID = filters.catID;
+    this.fabID = filters.fabID;
+    this.date_debut = filters.date_debut;
+    this.date_fin = filters.date_fin;
+    
+  }
   constructor(
     private produitsService: ProduitsService,
     @Inject(PLATFORM_ID) private platformId: Object
