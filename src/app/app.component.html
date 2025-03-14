@@ -1,2 +1,6 @@
-<app-header></app-header> 
+<app-header></app-header>
+
+<!-- ✅ Filtre global -->
+<app-filters (filterChange)="updateFilters($event)"></app-filters>
+
 <router-outlet></router-outlet>  <!-- ✅ C'est ici que les composants changent selon la route -->

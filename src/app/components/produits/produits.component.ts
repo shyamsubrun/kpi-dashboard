@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FiltersComponent } from '../filters/filters.component';
 import { GraphComponent } from '../graph/graph.component';
 import { StoreCountComponent } from '../store-count/store-count.component'; // ✅ Ajout
+import { Input } from '@angular/core';  // ✅ Ajout de Input pour récupérer les valeurs de `AppComponent`
 
 @Component({
   selector: 'app-produits',
@@ -12,10 +13,10 @@ import { StoreCountComponent } from '../store-count/store-count.component'; // �
   styleUrls: ['./produits.component.css'],
 })
 export class ProduitsComponent {
-  catID = 5;
-  fabID!: number;
-  date_debut!: string;
-  date_fin!: string;
+  @Input() catID!: number;  // ✅ Récupère la valeur globale
+  @Input() fabID!: number;
+  @Input() date_debut!: string;
+  @Input() date_fin!: string;
 
   updateFilters(filters: { catID: number; fabID: number ,date_debut: string ,date_fin: string}) {
     this.catID = filters.catID;
