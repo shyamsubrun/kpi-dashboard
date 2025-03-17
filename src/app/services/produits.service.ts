@@ -65,4 +65,12 @@ export class ProduitsService {
   }
   
 
+  getScoreSanteTousLesMois(catID: number, fabID: number): Observable<any> {
+    const url = `http://localhost:8000/api/produits/?type=score-sante-touts-les-mois&catID=${catID}&fabID=${fabID}`;
+    console.log("🔗 Requête API envoyée:", url); // ✅ Vérification de l'URL envoyée
+    return this.http.get<any>(url);
+  }
+  
+  
+
 }
