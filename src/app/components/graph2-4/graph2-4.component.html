@@ -1,7 +1,4 @@
 <h2>📊 Graphique 2.4 - Score Santé</h2>
-
-<app-filters (filterChange)="updateFilters($event)" [showAllCategories]="false"></app-filters> <!-- ✅ Ajout du paramètre -->
-
 <div *ngIf="isBrowser && lineChartData">
   <canvas baseChart
     [data]="lineChartData"

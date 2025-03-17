@@ -6,11 +6,12 @@ import { StatsComponent } from '../stats/stats.component';
 import { StoreCountComponent } from '../store-count/store-count.component';
 import { Graph3CourbeComponent } from '../graph3courbe/graph3courbe.component'
 import { GraphAverageMagasinsComponent } from '../graph-average-magasins/graph-average-magasins.component';
+import { Graph2_4Component } from '../graph2-4/graph2-4.component';
 
 @Component({
   selector: 'app-produits',
   standalone: true,
-  imports: [CommonModule, FiltersComponent, GraphComponent,StoreCountComponent,StatsComponent,Graph3CourbeComponent,GraphAverageMagasinsComponent],
+  imports: [CommonModule, FiltersComponent, GraphComponent,StoreCountComponent,StatsComponent,Graph3CourbeComponent,GraphAverageMagasinsComponent,Graph2_4Component],
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css'],
 })
