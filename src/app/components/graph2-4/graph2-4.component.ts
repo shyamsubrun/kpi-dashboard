@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Input, OnChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { ChartType, ChartConfiguration } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
@@ -12,10 +12,12 @@ import { FiltersComponent } from '../filters/filters.component';
   templateUrl: './graph2-4.component.html',
   styleUrls: ['./graph2-4.component.css'],
 })
-export class Graph2_4Component implements OnInit {
+export class Graph2_4Component implements OnChanges {
   isBrowser: boolean;
-  catID: number = 0;
-  fabID: number = 0;
+
+  @Input() catID!: number;
+  @Input() fabID!: number;
+
   lineChartLabels: string[] = [];
   lineChartData: any = null;
   lineChartType: ChartType = 'line';
@@ -28,12 +30,10 @@ export class Graph2_4Component implements OnInit {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  ngOnInit(): void {}
-
-  updateFilters(filters: { catID: number | null; fabID: number; date_debut: string; date_fin: string }) {
-    this.catID = filters.catID ?? 0;
-    this.fabID = filters.fabID;
-    this.fetchData();
+  ngOnChanges(): void {
+    if (this.catID && this.fabID) {
+      this.fetchData();
+    }
   }
 
   fetchData(): void {
@@ -58,12 +58,12 @@ export class Graph2_4Component implements OnInit {
       return;
     }
 
-    this.lineChartLabels = data.map(item => item.mois_annee); // ✅ Prend les mois/années
+    this.lineChartLabels = data.map(item => item.mois_annee);
     this.lineChartData = {
       labels: this.lineChartLabels,
       datasets: [
         {
-          data: data.map(item => item.avg_percentage), // ✅ Utilise "avg_percentage"
+          data: data.map(item => item.avg_percentage),
           label: 'Score Santé (%)',
           borderColor: 'rgba(75, 192, 192, 1)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -73,4 +73,3 @@ export class Graph2_4Component implements OnInit {
     };
   }
 }
- 
