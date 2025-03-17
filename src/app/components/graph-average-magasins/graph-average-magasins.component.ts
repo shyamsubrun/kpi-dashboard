@@ -4,11 +4,12 @@ import { ChartType, ChartConfiguration } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { ProduitsService } from '../../services/produits.service';
 import { FormsModule } from '@angular/forms'; // Pour le select
+import { FiltersComponent } from '../filters/filters.component';
 
 @Component({
   selector: 'app-graph-average-magasins',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, FormsModule],
+  imports: [CommonModule, NgChartsModule, FormsModule,FiltersComponent],
   templateUrl: './graph-average-magasins.component.html',
   styleUrls: ['./graph-average-magasins.component.css'],
 })
@@ -38,6 +39,24 @@ export class GraphAverageMagasinsComponent implements OnInit {
     }
     this.fetchData(this.selectedCategory, this.selectedYear);
   }
+
+  updateFilters(filters: { catID: number | null; fabID: number; date_debut: string }) {
+    this.selectedCategory = filters.catID;
+    
+    // ✅ Extraire l'année depuis la date_debut (format YYYY-MM-DD)
+    if (filters.date_debut) {
+      this.selectedYear = Number(filters.date_debut.split('-')[0]); // Prend uniquement l'année
+    }
+  
+    if (this.selectedCategory === null) {
+      console.warn("❌ Catégorie invalide.");
+      return; // Ne pas appeler fetchData si la catégorie est invalide
+    }
+  
+    this.fetchData(this.selectedCategory, this.selectedYear); // ✅ Appel correct avec category + année
+  }
+  
+  
 
   fetchData(category: number, year: number): void {
     this.produitsService.getAverageMagasins(category, year).subscribe((data: any[]) => {
