@@ -1,3 +1,25 @@
-<app-filters (filterChange)="updateFilters($event)" [showAllCategories]="false"></app-filters> <!-- ✅ Ajout du paramètre -->
-<app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
-<app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
+<div class="page-container">
+  <!-- Composant de filtre -->
+  <div class="filter-container">
+    <app-filters (filterChange)="updateFilters($event)" [showAllCategories]="false"></app-filters>
+  </div>
+
+  <!-- Conteneur des 3 derniers composants -->
+  <div class="graph-container">
+    <div class="graph-item">
+      <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
+    </div>
+    <div class="graph-item">
+      <app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
+    </div>
+    <div class="graph-item">
+      <app-stats [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-stats>
+    </div>
+    <div class="graph-item">
+      <app-graph3courbe [catID]="catID" [fabID]="fabID"></app-graph3courbe>
+    </div>
+    <div>
+        <app-graph-average-magasins [catID]="catID" [date_debut]="date_debut" ></app-graph-average-magasins>
+    </div>
+  </div>
+</div>

@@ -1,30 +1,45 @@
-.filters {
+/* Conteneur principal pour toute la page */
+.page-container {
+  margin: 20px;  /* Ajoute un peu d'espace autour de la page */
+}
+
+/* Conteneur spécifique au filtre */
+.filter-container {
+  margin-bottom: 20px; /* Espacement sous le filtre */
+}
+
+/* Conteneur des graphiques et autres éléments */
+.graph-container {
   display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap;  /* Permet de déplacer les éléments à la ligne si nécessaire */
+  gap: 20px; /* Espacement entre les éléments */
+  justify-content: space-between;
 }
 
-input, select {
-  padding: 5px;
-  font-size: 14px;
+/* Pour chaque élément dans le conteneur de graphiques */
+.graph-item {
+  flex: 1 1 calc(25% - 20px); /* Chaque élément prend 25% de la largeur, avec un espacement de 20px */
+  min-width: 250px; /* Largeur minimale de chaque élément */
+  max-width: 350px; /* Largeur maximale de chaque élément */
+  margin-bottom: 20px; /* Espacement en bas des éléments */
 }
 
-.info-card {
-  background: #f5f5f5;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  margin-bottom: 20px;
+/* Pour les petits écrans */
+@media (max-width: 1024px) {
+  .graph-item {
+    flex: 1 1 calc(33.33% - 20px);  /* Sur les tablettes et écrans plus petits, chaque élément prend 33% */
+  }
 }
 
-.info-card h3 {
-  margin: 0;
-  color: #333;
+@media (max-width: 768px) {
+  .graph-item {
+    flex: 1 1 100%;  /* Sur mobile, chaque élément prend 100% de la largeur */
+  }
 }
 
-.info-card p {
-  font-size: 20px;
-  font-weight: bold;
-  color: #4a90e2;
+@media (max-width: 480px) {
+  /* Ajouter des marges réduites sur les plus petits écrans si nécessaire */
+  .graph-item {
+    margin-bottom: 15px;
+  }
 }
