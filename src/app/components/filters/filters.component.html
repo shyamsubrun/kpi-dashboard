@@ -1,17 +1,22 @@
 <div class="filters-container">
   <div class="filters">
+    
+    <!-- ✅ Sélecteur de catégorie avec option "Toutes les catégories" -->
     <div>
       <label for="catID">Catégorie :</label>
       <select id="catID" (change)="onCatIDChange($event)">
+        <option value="null" [selected]="catID === null">Toutes les catégories</option>
         <option *ngFor="let id of categories" [value]="id">{{ id }}</option>
       </select>
     </div>
 
+    <!-- ✅ Input pour entrer un Fabricant -->
     <div>
       <label for="fabID">Fabricant :</label>
-      <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="onFabIDChange()">
+      <input id="fabID" type="number" [(ngModel)]="fabID" placeholder="Entrer FabID" (change)="emitChange()">
     </div>
 
+    <!-- ✅ Sélecteur de période (Hiver, Printemps, Été, Automne) -->
     <div>
       <label for="periode">Période :</label>
       <select id="periode" (change)="onPeriodeChange($event)">
@@ -20,14 +25,17 @@
       </select>
     </div>
 
+    <!-- ✅ Sélection manuelle de la Date de Début -->
     <div>
       <label for="dateDebut">Date début :</label>
-      <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()" [min]="minDate" [max]="maxDate">
+      <input type="date" id="dateDebut" [(ngModel)]="date_debut" (change)="onDateChange()">
     </div>
 
+    <!-- ✅ Sélection manuelle de la Date de Fin -->
     <div>
       <label for="dateFin">Date fin :</label>
-      <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()" [min]="minDate" [max]="maxDate">
+      <input type="date" id="dateFin" [(ngModel)]="date_fin" (change)="onDateChange()">
     </div>
+
   </div>
 </div>

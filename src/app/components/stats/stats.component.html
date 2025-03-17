@@ -1,12 +1,5 @@
 <h2>📊 Statistiques</h2>
-<app-filters (filterChange)="updateFilters($event)"></app-filters>
-
-<!-- ✅ Sélecteur de catégorie -->
-<label for="categorySelect">Sélectionner une catégorie :</label>
-<select id="categorySelect" (change)="onCategoryChange($event)">
-  <option value="all">Toutes les catégories</option>
-  <option *ngFor="let id of categories" [value]="id">Catégorie {{ id }}</option>
-</select>
+<app-filters (filterChange)="updateFilters($event)" [showAllCategories]="true"></app-filters> <!-- ✅ Ajout du paramètre -->
 
 <!-- ✅ Graphique -->
 <div *ngIf="isBrowser">

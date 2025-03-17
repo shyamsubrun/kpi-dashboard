@@ -1,17 +1,18 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [CommonModule, FormsModule],  // ❌ Suppression de StoreCountComponent
+  imports: [CommonModule, FormsModule],
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent {
-  categories = Array.from({ length: 10 }, (_, i) => i);
-  catID!: number;
+  @Input() showAllCategories: boolean = false; // ✅ Gère l'affichage de "Toutes les catégories"
+  categories = Array.from({ length: 10 }, (_, i) => i); // ✅ Catégories de 0 à 9
+  catID: number | null = null;
   fabID!: number;
   
   date_debut: string = this.toInputDate(new Date()); 
@@ -29,7 +30,7 @@ export class FiltersComponent {
   selectedPeriode: string = '';
 
   @Output() filterChange = new EventEmitter<{ 
-    catID: number; fabID: number; date_debut: string; date_fin: string; 
+    catID: number | null; fabID: number; date_debut: string; date_fin: string; 
   }>();
 
   toInputDate(date: Date): string {
@@ -37,7 +38,8 @@ export class FiltersComponent {
   }
 
   onCatIDChange(event: Event): void {
-    this.catID = Number((event.target as HTMLSelectElement).value);
+    const value = (event.target as HTMLSelectElement).value;
+    this.catID = value === 'null' ? null : Number(value);
     this.emitChange();
   }
 
@@ -46,12 +48,13 @@ export class FiltersComponent {
   }
 
   onDateChange(): void {
-    this.selectedPeriode = '';
+    this.selectedPeriode = ''; // ✅ Si on change la date manuellement, réinitialise la période
     this.emitChange();
   }
 
   onPeriodeChange(event: Event): void {
-    const periode = this.periodes.find(p => p.label === (event.target as HTMLSelectElement).value);
+    const target = event.target as HTMLSelectElement;
+    const periode = this.periodes.find(p => p.label === target.value);
     if (periode) {
       this.date_debut = periode.debut;
       this.date_fin = periode.fin;

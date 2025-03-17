@@ -12,17 +12,19 @@ import { StoreCountComponent } from '../store-count/store-count.component';
   styleUrls: ['./produits.component.css'],
 })
 export class ProduitsComponent {
-  catID !: number;
+  catID: number = 0; // ✅ Valeur par défaut au lieu de null
   fabID!: number;
   date_debut!: string;
   date_fin!: string;
 
-  updateFilters(filters: { catID: number; fabID: number ,date_debut: string ,date_fin: string}) {
-    this.catID = filters.catID;
+  /**
+   * Mise à jour des filtres depuis `app-filters`
+   */
+  updateFilters(filters: { catID: number; fabID: number; date_debut: string; date_fin: string }) {
+    this.catID = filters.catID ?? 0; // ✅ Si null, remplace par 0
     this.fabID = filters.fabID;
     this.date_debut = filters.date_debut;
     this.date_fin = filters.date_fin;
-    
   }
 
   

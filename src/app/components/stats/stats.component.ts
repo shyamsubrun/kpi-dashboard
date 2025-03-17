@@ -9,7 +9,7 @@ import { FiltersComponent } from '../filters/filters.component';
 @Component({
   selector: 'app-stats',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, HeaderComponent,FiltersComponent],
+  imports: [CommonModule, NgChartsModule, HeaderComponent, FiltersComponent],
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
@@ -30,21 +30,12 @@ export class StatsComponent implements OnInit {
       }
     }
   };
-  categories = Array.from({ length: 10 }, (_, i) => i);
-  selectedCategory: number | null = null;
-  catID = 5;
+
+  catID: number | null = null; // ✅ Permet d'utiliser "Toutes les catégories"
   fabID!: number;
   date_debut!: string;
   date_fin!: string;
 
-  updateFilters(filters: { catID: number; fabID: number ,date_debut: string ,date_fin: string}) {
-    this.catID = filters.catID;
-    this.fabID = filters.fabID;
-    this.date_debut = filters.date_debut;
-    this.date_fin = filters.date_fin;
-    this.fetchData();
-    
-  }
   constructor(
     private produitsService: ProduitsService,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -58,18 +49,21 @@ export class StatsComponent implements OnInit {
     }
   }
 
-  onCategoryChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    this.selectedCategory = target.value === "all" ? null : Number(target.value);
+  updateFilters(filters: { catID: number | null; fabID: number; date_debut: string; date_fin: string }) {
+    this.catID = filters.catID;
+    this.fabID = filters.fabID;
+    this.date_debut = filters.date_debut;
+    this.date_fin = filters.date_fin;
     this.fetchData();
   }
 
   fetchData(): void {
-    this.produitsService.getTopMagasins(this.catID,this.date_debut, this.date_fin).subscribe((data: any[]) => {
-      if (this.selectedCategory == null) {
+    this.produitsService.getTopMagasins(this.catID, this.date_debut, this.date_fin).subscribe((data: any[]) => {
+      if (this.catID === null) {
         this.updateChartData_all(data);
-      } 
-      else this.updateChartData(data);
+      } else {
+        this.updateChartData(data);
+      }
     });
   }
 
@@ -77,7 +71,6 @@ export class StatsComponent implements OnInit {
     console.log('📊 Data received:', data);
 
     this.barChartLabels = data.map(mag => mag.magid ? `Mag ${mag.magid}` : 'Mag inconnu');
-    // ✅ Calcul des segments
     const segment1 = data.map(mag => (mag.score || 0) * 0.6);
     const segment2 = data.map(mag => (mag.score || 0) * 0.3);
     const segment3 = data.map(mag => (mag.score || 0) * 0.1);
@@ -91,6 +84,7 @@ export class StatsComponent implements OnInit {
       ]
     };
   }
+
   updateChartData_all(data: any[]): void {
     console.log('📊 Data received:', data);
 
