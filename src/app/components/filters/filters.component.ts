@@ -65,7 +65,7 @@ export class FiltersComponent {
 
   emitChange(): void {
     this.filterChange.emit({
-      catID: this.catID ?? 0,  // ✅ Remplace `null` par `0`
+      catID: this.catID ?? null,  // ✅ Remplace `null` par `0`
       fabID: this.fabID ?? 0,  // ✅ Remplace `null` par `0`
       date_debut: this.date_debut,
       date_fin: this.date_fin

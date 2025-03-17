@@ -1,19 +1,22 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { ChartType, ChartConfiguration } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { ProduitsService } from '../../services/produits.service';
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
-import { FiltersComponent } from '../filters/filters.component';
 
 @Component({
   selector: 'app-stats',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, HeaderComponent, FiltersComponent],
+  imports: [CommonModule, NgChartsModule, HeaderComponent],
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
-export class StatsComponent implements OnInit {
+export class StatsComponent implements OnChanges {
+  @Input() catID!: number | null;
+  @Input() date_debut!: string;
+  @Input() date_fin!: string;
+
   isBrowser: boolean;
   barChartLabels: string[] = [];
   barChartData: any = null;
@@ -31,30 +34,17 @@ export class StatsComponent implements OnInit {
     }
   };
 
-  catID: number | null = null; // ✅ Permet d'utiliser "Toutes les catégories"
-  fabID!: number;
-  date_debut!: string;
-  date_fin!: string;
-
   constructor(
-    private produitsService: ProduitsService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private produitsService: ProduitsService
   ) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser = typeof window !== 'undefined';
   }
 
-  ngOnInit(): void {
-    if (this.isBrowser) {
+  ngOnChanges(changes: SimpleChanges): void {
+    // Vérifier si les inputs ont changé
+    if (changes['catID'] || changes['date_debut'] || changes['date_fin']) {
       this.fetchData();
     }
-  }
-
-  updateFilters(filters: { catID: number | null; fabID: number; date_debut: string; date_fin: string }) {
-    this.catID = filters.catID;
-    this.fabID = filters.fabID;
-    this.date_debut = filters.date_debut;
-    this.date_fin = filters.date_fin;
-    this.fetchData();
   }
 
   fetchData(): void {

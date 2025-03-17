@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { ChartType, ChartConfiguration } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
@@ -10,21 +10,22 @@ import { FiltersComponent } from '../filters/filters.component';
 @Component({
   selector: 'app-graph3courbe',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, FormsModule,FiltersComponent],  // ✅ Ajout de `FormsModule`
+  imports: [CommonModule, NgChartsModule, FormsModule, FiltersComponent],  // ✅ Ajout de `FormsModule`
   templateUrl: './graph3courbe.component.html',
   styleUrls: ['./graph3courbe.component.css'],
 })
-export class Graph3CourbeComponent implements OnInit {
+export class Graph3CourbeComponent implements OnInit, OnChanges {
   isBrowser: boolean;
-  categories: number[] = Array.from({ length: 10 }, (_, i) => i);
-  selectedCategory: number | null = null;
+  @Input() catID: number | null = null; // ✅ Récupération de catID
+  @Input() fabID!:number;
+  @Input() date_debut!: string; // ✅ Récupération de date_debut
+  @Input() date_fin!: string; // ✅ Récupération de date_fin
   fabricantInput: string = '';
   lineChartLabels: string[] = [];
   lineChartData: any = null;
   lineChartType: ChartType = 'line';
   lineChartOptions: ChartConfiguration['options'] = { responsive: true };
-  catID: number | null = null; // ✅ Permet d'utiliser "Toutes les catégories"
-  fabID!: number;
+
   constructor(
     private produitsService: ProduitsService,
     private route: ActivatedRoute,
@@ -34,7 +35,6 @@ export class Graph3CourbeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // ✅ Ne charge pas de données au début, juste récupère les paramètres URL si présents
     this.route.queryParams.subscribe(params => {
       if (params['fabID']) {
         this.fabricantInput = params['fabID'];
@@ -42,9 +42,18 @@ export class Graph3CourbeComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['catID'] || changes['fabID']) {
+      // Lorsque catID, date_debut ou date_fin changent, on récupère de nouvelles données
+      if (this.catID && this.fabID) {
+        this.fetchData(this.catID, this.fabID);
+      }
+    }
+  }
+
   onSearch(): void {
-    if (!this.selectedCategory || !this.fabricantInput) {
-      alert("Veuillez entrer une catégorie et un fabricant");
+    if (!this.catID || !this.fabricantInput || !this.date_debut || !this.date_fin) {
+      alert("Veuillez entrer une catégorie, un fabricant et des dates");
       return;
     }
 
@@ -54,23 +63,11 @@ export class Graph3CourbeComponent implements OnInit {
       return;
     }
 
-    this.fetchData(this.selectedCategory, fabID);
+    this.fetchData(this.catID, this.fabID);
   }
-  updateFilters(filters: { catID: number | null; fabID: number }) {
-    this.catID = filters.catID;
-    this.fabID = filters.fabID;
-  
-    if (this.catID === null || this.fabID === 0) {
-      console.warn("❌ Catégorie ou fabricant invalide.");
-      return; // Ne pas appeler fetchData si les valeurs sont invalides
-    }
-  
-    this.fetchData(this.catID, this.fabID); // ✅ Appel correct de fetchData avec les paramètres
-  }
-  
-  
-  fetchData(category: number, fabricant: number): void {
-    this.produitsService.getScoreEvolution(category, fabricant).subscribe((data: any[]) => {
+
+  fetchData(catID: number,fabID: number): void {
+    this.produitsService.getScoreEvolution(catID,fabID).subscribe((data: any[]) => {
       this.updateChartData(data);
     });
   }
@@ -95,6 +92,4 @@ export class Graph3CourbeComponent implements OnInit {
       ]
     };
   }
-
-
 }

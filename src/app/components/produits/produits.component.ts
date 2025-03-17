@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from '../filters/filters.component';
 import { GraphComponent } from '../graph/graph.component';
+import { StatsComponent } from '../stats/stats.component';
 import { StoreCountComponent } from '../store-count/store-count.component';
+import { Graph3CourbeComponent } from '../graph3courbe/graph3courbe.component'
+import { GraphAverageMagasinsComponent } from '../graph-average-magasins/graph-average-magasins.component';
 
 @Component({
   selector: 'app-produits',
   standalone: true,
-  imports: [CommonModule, FiltersComponent, GraphComponent,StoreCountComponent],
+  imports: [CommonModule, FiltersComponent, GraphComponent,StoreCountComponent,StatsComponent,Graph3CourbeComponent,GraphAverageMagasinsComponent],
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css'],
 })
