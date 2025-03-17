@@ -5,11 +5,12 @@ import { NgChartsModule } from 'ng2-charts';
 import { ProduitsService } from '../../services/produits.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';  // ✅ Ajout pour l'input
+import { FiltersComponent } from '../filters/filters.component';
 
 @Component({
   selector: 'app-graph3courbe',
   standalone: true,
-  imports: [CommonModule, NgChartsModule, FormsModule],  // ✅ Ajout de `FormsModule`
+  imports: [CommonModule, NgChartsModule, FormsModule,FiltersComponent],  // ✅ Ajout de `FormsModule`
   templateUrl: './graph3courbe.component.html',
   styleUrls: ['./graph3courbe.component.css'],
 })
@@ -22,7 +23,8 @@ export class Graph3CourbeComponent implements OnInit {
   lineChartData: any = null;
   lineChartType: ChartType = 'line';
   lineChartOptions: ChartConfiguration['options'] = { responsive: true };
-
+  catID: number | null = null; // ✅ Permet d'utiliser "Toutes les catégories"
+  fabID!: number;
   constructor(
     private produitsService: ProduitsService,
     private route: ActivatedRoute,
@@ -54,7 +56,19 @@ export class Graph3CourbeComponent implements OnInit {
 
     this.fetchData(this.selectedCategory, fabID);
   }
-
+  updateFilters(filters: { catID: number | null; fabID: number }) {
+    this.catID = filters.catID;
+    this.fabID = filters.fabID;
+  
+    if (this.catID === null || this.fabID === 0) {
+      console.warn("❌ Catégorie ou fabricant invalide.");
+      return; // Ne pas appeler fetchData si les valeurs sont invalides
+    }
+  
+    this.fetchData(this.catID, this.fabID); // ✅ Appel correct de fetchData avec les paramètres
+  }
+  
+  
   fetchData(category: number, fabricant: number): void {
     this.produitsService.getScoreEvolution(category, fabricant).subscribe((data: any[]) => {
       this.updateChartData(data);
@@ -81,4 +95,6 @@ export class Graph3CourbeComponent implements OnInit {
       ]
     };
   }
+
+
 }
