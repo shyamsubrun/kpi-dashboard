@@ -1,18 +1,20 @@
-<!-- ✅ Carte d'affichage de la moyenne -->
-<div class="average-card">
-  <h3>Moyenne des pourcentages</h3>
-  <p [class.high]="average >= 0.5" [class.medium]="average >= 0.2 && average < 0.5" [class.low]="average < 0.2">
-    <strong>{{ average | number:'1.2-2' }}%</strong>
-  </p>
-  <small>Ce pourcentage représente la moyenne des ventes par magasin.</small>
-</div>
+<div class="graph-card">
+  <!-- ✅ Carte d'affichage de la moyenne -->
+  <div class="average-card">
+    <h3>Moyenne des pourcentages</h3>
+    <p [class.high]="average >= 0.5" [class.medium]="average >= 0.2 && average < 0.5" [class.low]="average < 0.2">
+      <strong>{{ average | number:'1.2-2' }}%</strong>
+    </p>
+    <small>Ce pourcentage représente la moyenne des ventes par magasin.</small>
+  </div>
 
-<!-- ✅ Graphique -->
-<div *ngIf="isBrowser" class="chart-container">
-  <canvas baseChart
-    [data]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [type]="barChartType">
-  </canvas>
+  <!-- ✅ Graphique -->
+  <div *ngIf="isBrowser" class="chart-container">
+    <canvas baseChart
+      [data]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [type]="barChartType">
+    </canvas>
+  </div>
 </div>

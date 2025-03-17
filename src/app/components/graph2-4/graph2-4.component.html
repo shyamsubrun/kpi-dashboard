@@ -1,9 +1,12 @@
-<h2>📊 Graphique 2.4 - Score Santé</h2>
-<div *ngIf="isBrowser && lineChartData">
-  <canvas baseChart
-    [data]="lineChartData"
-    [labels]="lineChartLabels"
-    [type]="lineChartType"
-    [options]="lineChartOptions">
-  </canvas>
+<div class="graph-card">
+  <h3>📊 Graphique 2.4 - Score Santé</h3>
+
+  <div *ngIf="isBrowser" class="chart-container">
+    <canvas baseChart
+      [data]="lineChartData"
+      [labels]="lineChartLabels"
+      [type]="lineChartType"
+      [options]="lineChartOptions">
+    </canvas>
+  </div>
 </div>

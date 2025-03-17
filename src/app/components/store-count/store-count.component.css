@@ -1,27 +1,54 @@
 .store-count-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .store-count-card {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    width: 200px;
-  }
-  
-  .store-count-card h3 {
-    margin: 0;
-    color: #4a90e2;
-  }
-  
-  .store-count-card p {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.store-count-card {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+  width: 220px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.store-count-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.store-count-card h3 {
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.store-count-card p {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0 0;
+}
+
+/* Ajout des icônes */
+.store-count-card .icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+/* Couleurs spécifiques */
+.magasins {
+  border-top: 5px solid #4a90e2;
+}
+
+.fabricants {
+  border-top: 5px solid #f39c12;
+}
+
+.moyenne {
+  border-top: 5px solid #9b59b6;
+}

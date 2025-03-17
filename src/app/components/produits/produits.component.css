@@ -1,45 +1,55 @@
-/* Conteneur principal pour toute la page */
-.page-container {
-  margin: 20px;  /* Ajoute un peu d'espace autour de la page */
+/* ✅ Conteneur principal */
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px;
 }
 
-/* Conteneur spécifique au filtre */
+/* ✅ Conteneur du filtre */
 .filter-container {
-  margin-bottom: 20px; /* Espacement sous le filtre */
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-/* Conteneur des graphiques et autres éléments */
+/* ✅ Conteneur des graphiques */
 .graph-container {
   display: flex;
-  flex-wrap: wrap;  /* Permet de déplacer les éléments à la ligne si nécessaire */
-  gap: 20px; /* Espacement entre les éléments */
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-/* Pour chaque élément dans le conteneur de graphiques */
+/* ✅ Styles des cartes KPI et Graphiques */
 .graph-item {
-  flex: 1 1 calc(25% - 20px); /* Chaque élément prend 25% de la largeur, avec un espacement de 20px */
-  min-width: 250px; /* Largeur minimale de chaque élément */
-  max-width: 350px; /* Largeur maximale de chaque élément */
-  margin-bottom: 20px; /* Espacement en bas des éléments */
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  flex: 1 1 calc(30% - 20px); /* 3 graphiques par ligne */
+  min-width: 300px;
+  text-align: center;
 }
 
-/* Pour les petits écrans */
+.graph-item:hover {
+  transform: scale(1.05);
+}
+
+/* ✅ Responsive */
 @media (max-width: 1024px) {
   .graph-item {
-    flex: 1 1 calc(33.33% - 20px);  /* Sur les tablettes et écrans plus petits, chaque élément prend 33% */
+      flex: 1 1 calc(50% - 20px); /* 2 graphiques par ligne sur tablette */
   }
 }
 
 @media (max-width: 768px) {
-  .graph-item {
-    flex: 1 1 100%;  /* Sur mobile, chaque élément prend 100% de la largeur */
+  .graph-container {
+      flex-direction: column;
   }
-}
-
-@media (max-width: 480px) {
-  /* Ajouter des marges réduites sur les plus petits écrans si nécessaire */
   .graph-item {
-    margin-bottom: 15px;
+      flex: 1 1 100%; /* 1 graphique par ligne sur mobile */
   }
 }
