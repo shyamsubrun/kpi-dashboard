@@ -1,6 +1,6 @@
 <!-- ✅ Conteneur principal -->
 <div class="container">
-    <!-- ✅ Conteneur du filtre -->
+    <!-- ✅ Conteneur du filtre (mode normal) -->
     <div class="filter-container">
         <app-filters (filterChange)="updateFilters($event)" [showAllCategories]="false"></app-filters>
     </div>
@@ -33,6 +33,12 @@
     <div class="modal-content" (click)="$event.stopPropagation()">
         <button class="close-btn" (click)="closeModal()">✖</button>
         <h2>{{ modalTitle }}</h2>
+
+        <!-- ✅ Filtre aussi dans la modal (mais en utilisant le même état que le mode normal) -->
+        <div class="filter-container">
+            <app-filters (filterChange)="updateFilters($event)" [showAllCategories]="false"></app-filters>
+        </div>
+
         <div class="modal-graph">
             <ng-container *ngIf="selectedGraph === 'storeCount'">
                 <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
