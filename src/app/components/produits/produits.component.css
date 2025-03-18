@@ -110,7 +110,28 @@
   font-size: 20px;
   cursor: pointer;
 }
+.graph-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
 
+.half-width {
+  flex: 1 1 50%;
+}
+
+.full-width {
+  flex: 1 1 100%;
+}
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.small-width {
+  flex: 1 1 40%;
+  max-width: 500px;
+}
 /* ✅ Responsive */
 @media (max-width: 1024px) {
   .graph-item {

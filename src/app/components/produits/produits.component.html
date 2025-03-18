@@ -7,23 +7,36 @@
 
     <!-- ✅ Conteneur des graphiques et KPIs -->
     <div class="graph-container">
-        <div class="graph-item" (click)="openModal('storeCount')">
+        <!-- Store en premier -->
+        <div class="graph-item full-width" (click)="openModal('storeCount')">
             <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
         </div>
-        <div class="graph-item" (click)="openModal('graph')">
-            <app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
+        
+        <!-- App-Stats à gauche et App-Graph-Average à droite -->
+        <div class="graph-row">
+            <div class="graph-item half-width" (click)="openModal('stats')">
+                <app-stats [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-stats>
+            </div>
+            <div class="graph-item half-width" (click)="openModal('graph')">
+                <app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
+            </div>
         </div>
-        <div class="graph-item" (click)="openModal('stats')">
-            <app-stats [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-stats>
+        
+        <!-- Graph3 et Graph2-4 côte à côte -->
+        <div class="graph-row">
+            <div class="graph-item half-width" (click)="openModal('graph3courbe')">
+                <app-graph3courbe [catID]="catID" [fabID]="fabID"></app-graph3courbe>
+            </div>
+            <div class="graph-item half-width" (click)="openModal('graph2-4')">
+                <app-graph2-4 [catID]="catID" [fabID]="fabID"></app-graph2-4>
+            </div>
         </div>
-        <div class="graph-item" (click)="openModal('graph3courbe')">
-            <app-graph3courbe [catID]="catID" [fabID]="fabID"></app-graph3courbe>
-        </div>
-        <div class="graph-item" (click)="openModal('graphAverage')">
-            <app-graph-average-magasins [catID]="catID" [date_debut]="date_debut"></app-graph-average-magasins>
-        </div>
-        <div class="graph-item" (click)="openModal('graph2-4')">
-            <app-graph2-4 [catID]="catID" [fabID]="fabID"></app-graph2-4>
+        
+        <!-- Graph tout en bas -->
+        <div class="graph-row center-content">
+            <div class="graph-item small-width" (click)="openModal('graph')">
+                <app-graph-average-magasins [catID]="catID" [date_debut]="date_debut"></app-graph-average-magasins>
+            </div>
         </div>
     </div>
 </div>
@@ -34,7 +47,7 @@
         <button class="close-btn" (click)="closeModal()">✖</button>
         <h2>{{ modalTitle }}</h2>
 
-        <!-- ✅ Filtre aussi dans la modal (mais en utilisant le même état que le mode normal) -->
+        <!-- ✅ Filtre aussi dans la modal -->
         <div class="filter-container">
             <app-filters (filterChange)="updateFilters($event)" [showAllCategories]="false"></app-filters>
         </div>
