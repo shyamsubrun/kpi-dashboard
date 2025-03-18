@@ -45,10 +45,6 @@ export class GraphAverageMagasinsComponent implements OnInit, OnChanges {
   }
 
   updateChartData(data: any[]): void {
-    if (data.length === 0) {
-      alert('Aucune donnée trouvée.');
-      return;
-    }
     this.pieChartLabels = data.map(item => item.mois);
     this.pieChartData = {
       labels: this.pieChartLabels,

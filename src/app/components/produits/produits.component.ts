@@ -25,7 +25,7 @@ import { Graph2_4Component } from '../graph2-4/graph2-4.component';
   styleUrls: ['./produits.component.css'],
 })
 export class ProduitsComponent {
-  catID: number = 0; 
+  catID: number =0; 
   fabID!: number;
   date_debut!: string;
   date_fin!: string;
@@ -35,7 +35,7 @@ export class ProduitsComponent {
   selectedGraph: string | null = null;
 
   /**
-   * Mise à jour des filtres depuis `app-filters`
+   * Mise à jour des filtres depuis app-filters
    */
   updateFilters(filters: { catID: number | null; fabID: number; date_debut: string; date_fin: string }) {
     this.catID = filters.catID ?? 0;
