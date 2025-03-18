@@ -1,4 +1,3 @@
-
 <!-- ✅ Conteneur principal -->
 <div class="container">
     <!-- ✅ Conteneur du filtre -->
@@ -8,23 +7,51 @@
 
     <!-- ✅ Conteneur des graphiques et KPIs -->
     <div class="graph-container">
-        <div class="graph-item">
+        <div class="graph-item" (click)="openModal('storeCount')">
             <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
         </div>
-        <div class="graph-item">
+        <div class="graph-item" (click)="openModal('graph')">
             <app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
         </div>
-        <div class="graph-item">
+        <div class="graph-item" (click)="openModal('stats')">
             <app-stats [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-stats>
         </div>
-        <div class="graph-item">
+        <div class="graph-item" (click)="openModal('graph3courbe')">
             <app-graph3courbe [catID]="catID" [fabID]="fabID"></app-graph3courbe>
         </div>
-        <div class="graph-item">
+        <div class="graph-item" (click)="openModal('graphAverage')">
             <app-graph-average-magasins [catID]="catID" [date_debut]="date_debut"></app-graph-average-magasins>
         </div>
-        <div class="graph-item">
+        <div class="graph-item" (click)="openModal('graph2-4')">
             <app-graph2-4 [catID]="catID" [fabID]="fabID"></app-graph2-4>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ MODAL POUR AFFICHAGE EN GRAND -->
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeModal()">✖</button>
+        <h2>{{ modalTitle }}</h2>
+        <div class="modal-graph">
+            <ng-container *ngIf="selectedGraph === 'storeCount'">
+                <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
+            </ng-container>
+            <ng-container *ngIf="selectedGraph === 'graph'">
+                <app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
+            </ng-container>
+            <ng-container *ngIf="selectedGraph === 'stats'">
+                <app-stats [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-stats>
+            </ng-container>
+            <ng-container *ngIf="selectedGraph === 'graph3courbe'">
+                <app-graph3courbe [catID]="catID" [fabID]="fabID"></app-graph3courbe>
+            </ng-container>
+            <ng-container *ngIf="selectedGraph === 'graphAverage'">
+                <app-graph-average-magasins [catID]="catID" [date_debut]="date_debut"></app-graph-average-magasins>
+            </ng-container>
+            <ng-container *ngIf="selectedGraph === 'graph2-4'">
+                <app-graph2-4 [catID]="catID" [fabID]="fabID"></app-graph2-4>
+            </ng-container>
         </div>
     </div>
 </div>
