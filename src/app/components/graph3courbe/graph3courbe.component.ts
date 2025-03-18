@@ -73,11 +73,6 @@ export class Graph3CourbeComponent implements OnInit, OnChanges {
   }
 
   updateChartData(data: any[]): void {
-    if (data.length === 0) {
-      alert("Aucune donnée trouvée pour cette sélection.");
-      return;
-    }
-
     this.lineChartLabels = data.map(item => item.mois);
     this.lineChartData = {
       labels: this.lineChartLabels,

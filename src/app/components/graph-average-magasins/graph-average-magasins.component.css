@@ -1,9 +1,8 @@
 /* ✅ Style global de la carte du graphique */
 .graph-card {
-    background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+    background: white;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     text-align: center;
     width: 100%;
@@ -11,8 +10,7 @@
   
   /* ✅ Effet de hover sur la carte */
   .graph-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
   }
   
   /* ✅ Titre du graphique */
@@ -40,9 +38,6 @@
     align-items: center;
     margin-top: 10px;
     padding: 10px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   }
   
   /* ✅ Animation fluide */
@@ -60,4 +55,3 @@
       transform: translateY(0);
     }
   }
-  

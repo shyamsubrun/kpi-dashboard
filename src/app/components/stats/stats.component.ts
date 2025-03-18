@@ -49,7 +49,8 @@ export class StatsComponent implements OnChanges {
 
   fetchData(): void {
     this.produitsService.getTopMagasins(this.catID, this.date_debut, this.date_fin).subscribe((data: any[]) => {
-      if (this.catID === null) {
+      console.log("catID from stats", this.catID)
+      if (this.catID === -1) {
         this.updateChartData_all(data);
       } else {
         this.updateChartData(data);
