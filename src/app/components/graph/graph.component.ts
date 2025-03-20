@@ -45,17 +45,13 @@ export class GraphComponent implements OnChanges {
     if (!this.catID || !this.fabID ||!this.date_debut||!this.date_fin) return;
 
     this.produitsService.getStatsByCatFab(this.catID, this.fabID, this.date_debut, this.date_fin).subscribe((data) => {
-      console.log("c'est de graph")
-      console.log(data)
       this.average = data.average;
       const topMagasins = data.top_mag;
-      console.log("test ", data.top_mag)
-
       this.barChartLabels = topMagasins.map((mag: { magID: number }) => `Mag ${mag.magID}`);
       this.barChartData.labels = this.barChartLabels;
-      this.barChartData.datasets[0].data = topMagasins.map((mag: { percentage: number }) => mag.percentage);
-
+      this.barChartData.datasets[0].data = topMagasins.map((mag: { percentage: number }) => parseFloat(mag.percentage.toFixed(2)));
       this.barChartData = { ...this.barChartData }; // ✅ Force le rafraîchissement
     });
   }
+  
 }

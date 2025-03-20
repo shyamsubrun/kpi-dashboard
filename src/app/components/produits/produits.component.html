@@ -8,7 +8,7 @@
     <!-- ✅ Conteneur des graphiques et KPIs -->
     <div class="graph-container">
         <!-- Store en premier -->
-        <div class="graph-item full-width" (click)="openModal('storeCount')">
+        <div class="graph-item full-width">
             <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
         </div>
         
@@ -53,9 +53,6 @@
         </div>
 
         <div class="modal-graph">
-            <ng-container *ngIf="selectedGraph === 'storeCount'">
-                <app-store-count [catID]="catID" [date_debut]="date_debut" [date_fin]="date_fin"></app-store-count>
-            </ng-container>
             <ng-container *ngIf="selectedGraph === 'graph'">
                 <app-graph [catID]="catID" [fabID]="fabID" [date_debut]="date_debut" [date_fin]="date_fin"></app-graph>
             </ng-container>

@@ -1,12 +1,16 @@
+h2{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 0.5rem;
+}
 .chart-container {
     width: 80%;
     margin: auto;
     text-align: center;
-  }
-  
-  h2 {
-    color: #4a90e2;
-    font-size: 24px;
-    margin-bottom: 20px;
   }
   

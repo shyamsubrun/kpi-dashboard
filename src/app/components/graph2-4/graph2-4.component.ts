@@ -39,7 +39,6 @@ export class Graph2_4Component implements OnChanges {
   fetchData(): void {
     this.produitsService.getScoreSanteTousLesMois(this.catID, this.fabID)
       .subscribe((data: any) => {
-        console.log("📡 Réponse de l'API:", data);
 
         if (!data || !data.top_mag || !Array.isArray(data.top_mag)) {
           console.error("❌ Erreur: La réponse API n'est pas valide", data);

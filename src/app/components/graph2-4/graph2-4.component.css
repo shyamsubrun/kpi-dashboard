@@ -1,4 +1,14 @@
 /* ✅ Style global de la carte du graphique */
+h2{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 0.5rem;
+}
 .graph-card {
     background: white;
     border-radius: 12px;

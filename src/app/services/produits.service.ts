@@ -11,9 +11,7 @@ export class ProduitsService {
   constructor(private http: HttpClient) {}
 
   getStatsByCatFab(catID: number, fabID: number, date_debut: string, date_fin: string): Observable<any> {
-    console.log("test" , date_debut, date_fin)
     const url = `${this.baseUrl}?type=avg-cat-fab-10-mag&catID=${catID}&fabID=${fabID}&debut=${date_debut}&fin=${date_fin}`;
-    console.log(this.http.get<any>(url))
     return this.http.get<any>(url);
   }
 
@@ -67,7 +65,6 @@ export class ProduitsService {
 
   getScoreSanteTousLesMois(catID: number, fabID: number): Observable<any> {
     const url = `http://localhost:8000/api/produits/?type=score-sante-touts-les-mois&catID=${catID}&fabID=${fabID}`;
-    console.log("🔗 Requête API envoyée:", url); // ✅ Vérification de l'URL envoyée
     return this.http.get<any>(url);
   }
   

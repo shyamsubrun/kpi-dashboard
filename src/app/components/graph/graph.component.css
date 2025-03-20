@@ -1,4 +1,15 @@
 /* ✅ Style global de la carte contenant la moyenne et le graphique */
+h2{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 0.5rem;
+}
+
 .graph-card {
   background: white;
   border-radius: 12px;
@@ -37,41 +48,27 @@
 .average-card p {
   font-size: 24px;
   font-weight: bold;
-  margin: 5px 0;
+  margin: 1px 0;
   transition: color 0.3s ease-in-out;
 }
 
-/* ✅ Petites annotations sous la moyenne */
-.average-card small {
-  display: block;
-  font-size: 12px;
-  color: #777;
+
+.average-card .high {
+  color: #27ae60; 
+}
+.average-card .medium {
+  color: #f39c12; 
 }
 
-/* ✅ Indicateur de couleur pour la moyenne */
-.average-card p.high {
-  color: #27ae60; /* ✅ Vert pour les valeurs élevées */
+.average-card .low {
+  color: #e74c3c;
 }
-
-.average-card p.medium {
-  color: #f39c12; /* ✅ Orange pour les valeurs moyennes */
-}
-
-.average-card p.low {
-  color: #e74c3c; /* ✅ Rouge pour les valeurs faibles */
-}
-
-/* ✅ Centrer le graphique */
 .chart-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  padding: 10px;
   box-sizing: border-box;
 }
-
-/* ✅ Animation au chargement */
 .chart-container canvas {
   animation: fadeIn 0.6s ease-in-out;
 }
