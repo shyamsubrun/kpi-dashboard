@@ -49,7 +49,7 @@ export class ProduitsComponent {
    */
   openModal(graphName: string) {
     this.selectedGraph = graphName;
-    this.modalTitle = this.getGraphTitle(graphName);
+    //this.modalTitle = this.getGraphTitle(graphName);
     this.isModalOpen = true;
   }
 
@@ -68,7 +68,7 @@ export class ProduitsComponent {
     const titles: { [key: string]: string } = {
       'storeCount': 'Nombre de Magasins',
       'graph': 'Graphique Principal',
-      'stats': 'Statistiques',
+      'stats': 'Répartition des Top 10 Magasins par Catégorie',
       'graph3courbe': 'Détail Produit - Graphique 3 Courbes',
       'graphAverage': 'Nombre moyen de magasins par catégorie',
       'graph2-4': 'Graphique 2.4 - Score Santé'

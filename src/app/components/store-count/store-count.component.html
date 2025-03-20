@@ -1,18 +1,18 @@
 <div class="store-count-container">
   <div class="store-count-card magasins">
-    <div class="icon">📦</div>
-    <h3>Nombre de Magasins</h3>
+    <div class="icon">🏬</div>
+    <h3>Nombre de Magasins/Cat</h3>
     <p>{{ totalMagasins ?? '...' }}</p>
   </div>
   <div class="store-count-card fabricants">
     <div class="icon">🏭</div>
-    <h3>Nombre de Fabricants</h3>
+    <h3>Nombre de Fabricants/Cat</h3>
     <p>{{ totalFabricants ?? '...' }}</p>
   </div>
   <div class="store-count-card moyenne">
-    <div class="icon">📊</div>
-    <h3>Moyenne Produits / Fabricant</h3>
-    <p *ngIf="avgProductsPerFab !== null">{{ avgProductsPerFab | number:'1.2-2' }}</p>
-    <p *ngIf="avgProductsPerFab === null">Sélectionner une période</p>
+    <div class="icon">📦</div>
+    <h3>Moyenne des Produits/Fabricant</h3>
+    <p *ngIf="avgProductsPerFab !== null">{{ avgProductsPerFab | number:'1.0-0' }}</p>
+    <h4 *ngIf="avgProductsPerFab === null">Sélectionner une période</h4>
   </div>
 </div>

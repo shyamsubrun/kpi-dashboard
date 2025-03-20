@@ -1,13 +1,15 @@
-<h2>📈 Détail Produit - Graphique 3 Courbes</h2>
-<!-- ✅ Ajout du paramètre -->
+<h2>📈 Ventes Mensuelles du Fabricant par Catégorie</h2>
+<div *ngIf="isBrowser">
+  <div *ngIf="lineChartData; else loadingTemplate">
+    <canvas baseChart
+      [data]="lineChartData"
+      [labels]="lineChartLabels"
+      [type]="lineChartType"
+      [options]="lineChartOptions">
+    </canvas>
+  </div>
 
-
-<!-- ✅ Graphique -->
-<div *ngIf="isBrowser && lineChartData">
-  <canvas baseChart
-    [data]="lineChartData"
-    [labels]="lineChartLabels"
-    [type]="lineChartType"
-    [options]="lineChartOptions">
-  </canvas>
+  <ng-template #loadingTemplate>
+    <p>Chargement des données...</p>
+  </ng-template>
 </div>

@@ -49,7 +49,6 @@ export class StatsComponent implements OnChanges {
 
   fetchData(): void {
     this.produitsService.getTopMagasins(this.catID, this.date_debut, this.date_fin).subscribe((data: any[]) => {
-      console.log("catID from stats", this.catID)
       if (this.catID === -1) {
         this.updateChartData_all(data);
       } else {
@@ -59,8 +58,6 @@ export class StatsComponent implements OnChanges {
   }
 
   updateChartData(data: any[]): void {
-    console.log('📊 Data received:', data);
-
     this.barChartLabels = data.map(mag => mag.magid ? `Mag ${mag.magid}` : 'Mag inconnu');
     const segment1 = data.map(mag => (mag.score || 0) * 0.6);
     const segment2 = data.map(mag => (mag.score || 0) * 0.3);
@@ -77,8 +74,6 @@ export class StatsComponent implements OnChanges {
   }
 
   updateChartData_all(data: any[]): void {
-    console.log('📊 Data received:', data);
-
     this.barChartLabels = data.map(mag => mag.magid ? `Mag ${mag.magid}` : 'Mag inconnu');
     const segment1 = data.map(mag => (mag.score || 0) * 0.4);
     const segment2 = data.map(mag => (mag.score || 0) * 0.3);
