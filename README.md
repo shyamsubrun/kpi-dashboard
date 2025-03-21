@@ -34,10 +34,10 @@ L’application interagit avec une **API REST Django** pour afficher des graphiq
 
 ```bash
 # 1. Cloner le projet
-git clone https://github.com/votre-utilisateur/nom-du-repo.git
+git clone https://github.com/shyamsubrun/kpi-dashboard
 
 # 2. Aller dans le dossier du projet
-cd nom-du-repo
+cd kpi-dashboard
 
 # 3. Installer les dépendances
 npm install
